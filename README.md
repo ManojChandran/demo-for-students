@@ -79,8 +79,8 @@ assume bucket is created and have access.
   }
 ```
 ## Reference
-Link 1 : https://learn.hashicorp.com/tutorials/terraform/install-cli
-Link 2 : https://registry.terraform.io/browse/providers
-Link 3 : https://registry.terraform.io/providers/hashicorp/aws/latest/docs
-Link 4 : https://www.terraform.io/cloud-docs/run/install-software
-Link 5 : https://www.youtube.com/watch?v=h970ZBgKINg&t=602s
+Link 1 : https://learn.hashicorp.com/tutorials/terraform/install-cli <\br>
+Link 2 : https://registry.terraform.io/browse/providers <\br>
+Link 3 : https://registry.terraform.io/providers/hashicorp/aws/latest/docs <\br>
+Link 4 : https://www.terraform.io/cloud-docs/run/install-software  <\br>
+Link 5 : https://www.youtube.com/watch?v=h970ZBgKINg&t=602s  <\br>
