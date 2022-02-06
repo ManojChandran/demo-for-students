@@ -17,6 +17,12 @@ Terraform v0.15.3
 on linux_amd64
 + provider registry.terraform.io/hashicorp/aws v3.42.0
 ```
+## CLONE 
+
+clone the repo, using git command.
+```
+$ git clone https://github.com/ManojChandran/demo-for-students.git
+```
 
 ## Set AWS account
 By default, Terraform can detects AWS credentials set in our environment and uses them to sign requests to AWS. That way we don't need to manage credentials in your applications. The set your credentials in the following environment variables:
@@ -42,6 +48,13 @@ C:\> set AWS_SESSION_TOKEN="TOKEN"
 C:\> set AWS_REGION="us-east-1"
 ```
 
+## Run
+Navigate in to our project directory, follow the below commands.
+```
+$ terraform init
+$ terrafrom plan 
+$ terraform apply
+```
 ## Main commands:
 fmt - Reformat your configuration in the standard style
 ```
