@@ -1,5 +1,5 @@
 # Terraform Basics
-Repo dels with terraform basics, help you to install and use terraform.
+Repo deals with terraform basics, help you to install and use terraform.
 
 ## Installation
 Follow the commands to complete Terraform installation for ubuntu:
@@ -79,8 +79,8 @@ assume bucket is created and have access.
   }
 ```
 ## Reference
-Link 1 : https://learn.hashicorp.com/tutorials/terraform/install-cli <\br>
-Link 2 : https://registry.terraform.io/browse/providers <\br>
-Link 3 : https://registry.terraform.io/providers/hashicorp/aws/latest/docs <\br>
-Link 4 : https://www.terraform.io/cloud-docs/run/install-software  <\br>
-Link 5 : https://www.youtube.com/watch?v=h970ZBgKINg&t=602s  <\br>
+Link 1 : https://learn.hashicorp.com/tutorials/terraform/install-cli </br>
+Link 2 : https://registry.terraform.io/browse/providers </br>
+Link 3 : https://registry.terraform.io/providers/hashicorp/aws/latest/docs </br>
+Link 4 : https://www.terraform.io/cloud-docs/run/install-software  </br>
+Link 5 : https://www.youtube.com/watch?v=h970ZBgKINg&t=602s  </br>
