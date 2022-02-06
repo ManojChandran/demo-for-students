@@ -1,5 +1,5 @@
-# demo-for-students
-Terraform HCL
+# Terraform Basics
+Repo dels with terraform basics, help you to install and use terraform.
 
 ## Installation
 Follow the commands to complete Terraform installation for ubuntu:
