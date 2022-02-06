@@ -67,8 +67,20 @@ destroy - Destroy previously-created infrastructure
 ```
 terraform destroy
 ```
+
+## State file
+Backends define where Terraform's state snapshots are stored. Please find code to store the state file in AWS s3, 
+assume bucket is created and have access.
+```
+  backend "s3" {
+    bucket = "myterraformstatebackupfile2019"
+    key    = "terraform/terraform.tfstate"
+    region = "us-east-1"
+  }
+```
 ## Reference
 Link 1 : https://learn.hashicorp.com/tutorials/terraform/install-cli
 Link 2 : https://registry.terraform.io/browse/providers
 Link 3 : https://registry.terraform.io/providers/hashicorp/aws/latest/docs
 Link 4 : https://www.terraform.io/cloud-docs/run/install-software
+Link 5 : https://www.youtube.com/watch?v=h970ZBgKINg&t=602s
