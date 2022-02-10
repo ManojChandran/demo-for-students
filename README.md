@@ -1,5 +1,9 @@
-# Terraform Basics
-Repo deals with terraform basics, help you to install and use terraform.
+# Terraform
+Terraform is an open-source infrastructure provisioning software tool, created by HashiCorp. 
+* Terraform is written in Golang.
+* Terraform exercises core principle of infrastructure mutation or Mutable infrastructure.
+* Terraform uses HCL (Hashicorp configuration language) to provision infrastructure.
+* Terraform is best suitable for Infrastructure Provisioning
 
 ## Installation
 Follow the commands to complete Terraform installation for ubuntu:
@@ -19,12 +23,16 @@ on linux_amd64
 ```
 ## CLONE 
 
+Below repo provides a practical AWS ec2 webserver implementation. Its created for learning purpose and cover all the basic steps needed to provision infrastruture in AWS.
+
 clone the repo, using git command.
 ```
 $ git clone https://github.com/ManojChandran/demo-for-students.git
 ```
 
 ## Set AWS account
+As a pre-requisit for the learning, get a free tier AWS account. The AWS provider offers a flexible means of providing credentials for authentication, we have used `Environment variable` method.
+
 By default, Terraform can detects AWS credentials set in our environment and uses them to sign requests to AWS. That way we don't need to manage credentials in your applications. The set your credentials in the following environment variables:
 
 AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY /AWS_SESSION_TOKEN (optional)
@@ -48,21 +56,47 @@ C:\> set AWS_SESSION_TOKEN="TOKEN"
 C:\> set AWS_REGION="us-east-1"
 ```
 
-## Run
-Navigate in to our project directory, follow the below commands.
+## Provisioners
+
+This project require provisioners to run linux commands inside the EC2 for building a WEB server. To enable terraform provisioners, we need to establish a SSH connection. If you refer the `main.tf`, you can see SSH port 22 enabled in security groups and connection block defined with private key. This key pair is generated from AWS EC2 UI option Key pair, which will allow you to create a key pair with a specific name(i have used demokey.pem). 
+
+```go
+
+resource "aws_instance" "web" {
+  ami           = "ami-04505e74c0741db8d"
+  security_groups = ["${aws_security_group.web-sg.name}"]
+  instance_type = "t3.micro"
+  key_name 		= "demokey"     // <- demokey referenced from AWS for Public key
+.
+.
+.
+ 
+  connection {
+    type     = "ssh"
+    user     = "ubuntu"
+    private_key = file("demokey.pem")  // <- demokey.pem file stored in repo directory
+    host     = "${self.public_ip}"
+  }
+
 ```
-$ terraform init
-$ terrafrom plan 
-$ terraform apply
+## State file
+State file management is an important piece in Terraform, It uses state file as reference for real world infrastructure and take decisions on provioning new. In this example we are trying to use remote backup of state file in AWS s3 bucket. Backends define where Terraform's state snapshots are stored and code below store the state file in AWS s3 bucket.
+
+we assume bucket is created and have access.
+```go
+  backend "s3" {
+    bucket = "myterraformstatebackupfile2019"
+    key    = "terraform/terraform.tfstate"
+    region = "us-east-1"
+  }
 ```
+
 ## Main commands:
-fmt - Reformat your configuration in the standard style
-```
-$ terraform fmt
-```
+Navigate in to our project directory, follow the below basic commands.
+
 init - Prepare your working directory for other commands 
 ```
-terraform  init
+terraform init
 ```
 validate - it’s check all the terraform files and confirm all files are proper, executable/deployable by terraform apply command.
 ```
@@ -80,20 +114,13 @@ destroy - Destroy previously-created infrastructure
 ```
 terraform destroy
 ```
+## Conclusion
+We have learned basic terraform setup and basic operations with this exercise.
 
-## State file
-Backends define where Terraform's state snapshots are stored. Please find code to store the state file in AWS s3, 
-assume bucket is created and have access.
-```
-  backend "s3" {
-    bucket = "myterraformstatebackupfile2019"
-    key    = "terraform/terraform.tfstate"
-    region = "us-east-1"
-  }
-```
 ## Reference
 Link 1 : https://learn.hashicorp.com/tutorials/terraform/install-cli </br>
 Link 2 : https://registry.terraform.io/browse/providers </br>
 Link 3 : https://registry.terraform.io/providers/hashicorp/aws/latest/docs </br>
 Link 4 : https://www.terraform.io/cloud-docs/run/install-software  </br>
 Link 5 : https://www.youtube.com/watch?v=h970ZBgKINg&t=602s  </br>
+Link 6 : https://www.youtube.com/watch?v=3hCbOcCO0yk </br>
