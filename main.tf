@@ -9,11 +9,11 @@ terraform {
   ## interpolations cannot be used becasue the actvity is done initial stage
   ## need to create s3 bucket and folder prior to using the backend
   #--------------------------------------------------------------------------
-  backend "s3" {
-    bucket = "myterraformstatebackupfile2019"
-    key    = "terraform/terraform.tfstate"
-    region = "us-east-1"
-  }
+  #backend "s3" {
+  #  bucket = "myterraformstatebackupfile2019"
+  #  key    = "terraform/terraform.tfstate"
+  #  region = "us-east-1"
+  #}
 }
 
 provider "aws" {
@@ -21,29 +21,29 @@ provider "aws" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-04505e74c0741db8d"
+  ami           = "${var.aws-ami}"
   security_groups = ["${aws_security_group.web-sg.name}"]
-  instance_type = "t3.micro"
-  key_name 		= "demokey"
+  instance_type = "${var.aws-instance-type}"
+#  key_name 		= "demokey"
   
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt-get update",
-      "sudo apt-get install apache2 -y",
-#      "sudo systemctl start apache2",
-    ]
+#  provisioner "remote-exec" {
+#    inline = [
+#      "sudo apt-get update",
+#      "sudo apt-get install apache2 -y",
+##      "sudo systemctl start apache2",
+#    ]
+#
+#  }
+#  connection {
+#    type     = "ssh"
+#    user     = "manojchandran"
+#    private_key = file("demokey.pem")
+#    host     = "${self.public_ip}"
+#  }
 
-  }
-  connection {
-    type     = "ssh"
-    user     = "ubuntu"
-    private_key = file("demokey.pem")
-    host     = "${self.public_ip}"
-  }
-
-  tags = {
-    Name = "terraform Demo"
-  }
+#  tags = {
+#    Name = "terraform Demo"
+#  }
 }  
 
 
