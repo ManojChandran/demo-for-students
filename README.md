@@ -30,32 +30,6 @@ clone the repo, using git command.
 $ git clone https://github.com/ManojChandran/demo-for-students.git
 ```
 
-## Set AWS account
-As a pre-requisit for the learning, get a free tier AWS account. The AWS provider offers a flexible means of providing credentials for authentication, we have used `Environment variable` method.
-
-By default, Terraform can detects AWS credentials set in our environment and uses them to sign requests to AWS. That way we don't need to manage credentials in your applications. The set your credentials in the following environment variables:
-
-AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY /AWS_SESSION_TOKEN (optional)
-
-The following examples show how you configure the environment variables.
-
-Linux or Unix
-
-```
-$ export AWS_ACCESS_KEY_ID="YOUR_AKID"
-$ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
-$ export AWS_SESSION_TOKEN="TOKEN"
-$ export AWS_REGION="us-east-1"
-```
-
-Windows
-```
-C:\> set AWS_ACCESS_KEY_ID="YOUR_AKID"
-C:\> set AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
-C:\> set AWS_SESSION_TOKEN="TOKEN"
-C:\> set AWS_REGION="us-east-1"
-```
-
 ## Provisioners
 
 This project require provisioners to run linux commands inside the EC2 for building a WEB server. To enable terraform provisioners, we need to establish a SSH connection. If you refer the `main.tf`, you can see SSH port 22 enabled in security groups and connection block defined with private key. This key pair is generated from AWS EC2 UI option Key pair, which will allow you to create a key pair with a specific name(i have used demokey.pem). 
